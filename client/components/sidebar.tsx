@@ -1,8 +1,10 @@
 "use client";
 
+import { useCloseMobileMenuOnNavigate } from "@/hooks/use-close-mobile-menu";
 import { useUiStore } from "@/stores/ui-store";
 
 export default function Sidebar() {
+  useCloseMobileMenuOnNavigate();
   const isMobileMenuOpen = useUiStore((state) => state.isMobileMenuOpen);
   const setMobileMenuOpen = useUiStore((state) => state.setMobileMenuOpen);
 

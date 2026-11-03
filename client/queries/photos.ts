@@ -1,6 +1,7 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useCallback } from "react";
 import { useUiStore } from "@/stores/ui-store";
 import {
   parseLibrarySearch,
@@ -22,6 +23,15 @@ async function fetchPhotos(filters: LibrarySearch) {
   }
 
   return response.json() as Promise<unknown>;
+}
+
+export function useInvalidatePhotos() {
+  const queryClient = useQueryClient();
+
+  return useCallback(
+    () => queryClient.invalidateQueries({ queryKey: photoKeys.all }),
+    [queryClient],
+  );
 }
 
 export function usePhotosQuery() {
