@@ -1,4 +1,5 @@
-import React from "react";
+import Navbar from "@/components/navbar";
+import Sidebar from "@/components/sidebar";
 
 export default function ProtectedLayout({
   children,
@@ -6,12 +7,12 @@ export default function ProtectedLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div>
-      <div>
-        <p>Navbar</p>
-        <p>Sidebar</p>
+    <div className="flex h-dvh min-h-0">
+      <Sidebar />
+      <div className="flex min-w-0 flex-1 flex-col">
+        <Navbar />
+        <main className="app-main-content">{children}</main>
       </div>
-      <main className="app-main-content">{children}</main>
     </div>
   );
 }
